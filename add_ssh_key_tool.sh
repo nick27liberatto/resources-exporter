@@ -73,4 +73,5 @@ else
     printf "\n All the servers already have your key\n"
 fi
 
+# Remove temp file
 rm -f ./host/add_key
