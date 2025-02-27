@@ -1,1 +1,3 @@
-127.0.0.1,service_name,machine_hostname
+10.41.0.1,service_name,alias_or_hostname
+10.41.0.2,service_name,alias_or_hostname
+10.41.0.3,service_name,alias_or_hostname
