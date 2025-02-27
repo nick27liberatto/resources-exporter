@@ -5,20 +5,11 @@
 from prometheus_client import start_http_server, Enum, Gauge
 import paramiko
 import time
-import csv
 import os
 
 #=======================================#
 #               Variables               #
 #=======================================#
-
-#Host Configuration
-IP = 0
-SERVICE = 1
-HOSTNAME = 2
-vm_ips = []
-vm_services = []
-vm_hostnames = []
 
 #Ports
 ports = []
@@ -123,24 +114,6 @@ service_swap_usage_percent = Gauge('service_swap_usage_percent', 'SWAP usage in 
 service_swap_usage_bytes = Gauge('service_swap_usage_bytes', 'SWAP usage in bytes for each Server', ['server_hostname', 'server_ip', 'service_name'])
 service_swap_total_bytes = Gauge('service_swap_total_bytes', 'SWAP size for each Server', ['server_hostname', 'server_ip', 'service_name'])
 service_swap_free_bytes = Gauge('service_swap_free_bytes', 'SWAP free space in bytes for each Server', ['server_hostname', 'server_ip', 'service_name'])
-
-#=======================================#
-#                 Setup                 #
-#=======================================#
-
-def setup():
-    
-    #Get Hosts from CSV File 'host.csv'
-    with open('./host/host.csv') as h:
-        csv_reader = csv.reader(h)
-        for index, row in enumerate(csv_reader):
-            vm_ips.append(row[IP])
-            vm_services.append(row[SERVICE])  
-            vm_hostnames.append(row[HOSTNAME])          
-
-    #Get List Length
-    vm_services_qnt = len(vm_services)
-    fetch_data(vm_services_qnt)
 
 #============================================#
 #                 Fetch Data                 #
